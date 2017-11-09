@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  session:
+    timeout: 1000000  #用户回话session过期时间，以秒为单位
+  context-path: /nice_admin/login.html   #配置访问路径，默认为/
+  tomcat:
+    uri-encoding: UTF-8  #配置Tomcat编码，默认为UTF-8
+    #compression: on  #Tomcat是否开启压缩，默认为关闭
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.topsec.test.model
+
+ms:
+  db:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8
+    username: root
+    password: 123456
+    maxActive: 500
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+#  mvc:
+#    view:
+#      prefix: /static/
+#      suffix: .html
+
+
+
