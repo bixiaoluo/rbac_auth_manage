@@ -2,6 +2,8 @@ package com.topsec.test.mapper;
 
 import com.topsec.test.model.User;
 
+import java.util.Map;
+
 public interface UserMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,7 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    //根据条件查询用户信息
+    User findUserByUserName(Map map);
 }

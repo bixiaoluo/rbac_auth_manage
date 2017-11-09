@@ -22,15 +22,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from `user`
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from user
+    delete from `user`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.topsec.test.model.User" >
-    insert into user (id, user_name, accout, 
+    insert into `user` (id, user_name, accout,
       password, sex, tel, 
       email, create_time, creater, 
       update_time, updater, del
@@ -42,7 +42,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.topsec.test.model.User" >
-    insert into user
+    insert into `user`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -121,7 +121,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.topsec.test.model.User" >
-    update user
+    update `user`
     <set >
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
@@ -160,7 +160,7 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.topsec.test.model.User" >
-    update user
+    update `user`
     set user_name = #{userName,jdbcType=VARCHAR},
       accout = #{accout,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -174,4 +174,21 @@
       del = #{del,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+
+  <!--根据条件查询用户信息  用户名唯一-->
+  <select id="findUserByUserName" resultType="User" parameterType="java.util.Map">
+    select
+    *
+    from `user`
+    WHERE 1=1
+    <if test="accout != null and accout != ''">
+      AND accout = #{accout}
+    </if>
+    <if test="password != null and password != ''">
+      AND password = #{password}
+    </if>
+  </select>
+
+
 </mapper>

@@ -20,11 +20,12 @@
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http
 //                .authorizeRequests()  //定义哪些URL需要被保护、哪些不需要被保护
-//                .antMatchers("/", "/").permitAll()    // / or /home 不需要任何认证就可以访问，其他路径都需要认证
+//                // 配置那些路径可以不用权限访问，其他路径都需要认证
+//                .antMatchers("/public/**","/static/assets/**","/static/css/**","/static/images/**","/static/js/**").permitAll()
 //                .anyRequest().authenticated()
 //                .and()
 //                .formLogin()  //定义当需要用户登录时候，转到的登录页面。
-//                .loginPage("/login")
+//                .loginPage("/nice_admin/login.html")
 //                .permitAll()  //登录页面任意访问
 //                .and()
 //                .logout()
